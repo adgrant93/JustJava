@@ -13,6 +13,8 @@ package com.example.android.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -92,7 +94,9 @@ public class MainActivity extends AppCompatActivity {
         String numCoffees = "Quantity: " + quantity;
         String totalPrice = "Total: $" + finalPrice;
         String appreciation = "tanks u!";
-        String finalMessage = name + "\n" + numCoffees + "\n" + totalPrice + "\n" + appreciation;
+        CheckBox whippedCream = (CheckBox) findViewById(R.id.whipped_cream);
+        //whippedCream.isChecked()
+        String finalMessage = name + "\n" + "Add whipped cream? " + whippedCream.isChecked() + "\n" + numCoffees + "\n" + totalPrice + "\n" + appreciation;
         return finalMessage;
     }
 }
