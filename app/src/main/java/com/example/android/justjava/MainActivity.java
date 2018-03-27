@@ -12,10 +12,14 @@ package com.example.android.justjava;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.text.NumberFormat;
 
@@ -25,6 +29,7 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
+    String TAG = "Value";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,11 @@ public class MainActivity extends AppCompatActivity {
         /*display(quantity);
         displayPrice(quantity*5);*/
         int price = calculatePrice();
-        String priceMessage = createOrderSummary(price);
+        CheckBox whippedCream = findViewById(R.id.whipped_cream);
+        CheckBox chocolate = findViewById(R.id.chocolate);
+        EditText name_object = findViewById(R.id.name_text);
+        String name = name_object.getText().toString();
+        String priceMessage = createOrderSummary(price, whippedCream, chocolate, name);
         displayMessage(priceMessage);
     }
 
@@ -88,15 +97,18 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * @param finalPrice price of the order
+     * @param name name of buyer
      */
-    private String createOrderSummary(int finalPrice) {
-        String name = "Sonic Heroes";
+    private String createOrderSummary(int finalPrice, CheckBox whippedCream, CheckBox chocolate, String name) {
         String numCoffees = "Quantity: " + quantity;
         String totalPrice = "Total: $" + finalPrice;
         String appreciation = "tanks u!";
-        CheckBox whippedCream = (CheckBox) findViewById(R.id.whipped_cream);
+
+        Log.i(TAG, "This is the value: " + name);
+
+
         //whippedCream.isChecked()
-        String finalMessage = name + "\n" + "Add whipped cream? " + whippedCream.isChecked() + "\n" + numCoffees + "\n" + totalPrice + "\n" + appreciation;
+        String finalMessage = name + "\n" + "Add whipped cream? " + whippedCream.isChecked() + "\n" + "Add Chocolate? " + chocolate.isChecked() + "\n" + numCoffees + "\n" + totalPrice + "\n" + appreciation;
         return finalMessage;
     }
 }
